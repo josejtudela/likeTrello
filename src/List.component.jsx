@@ -8,8 +8,10 @@ class List extends React.Component {
     static propTypes = {
         data: ListType,
         onHandleMarkAsCompleted: PropTypes.func.isRequired,
+        onHandleRemoveTask: PropTypes.func.isRequired,
         onHandleNewTask: PropTypes.func.isRequired,
         onHandleRemoveList: PropTypes.func.isRequired,
+        onHandleChangeColor: PropTypes.func.isRequired,
     }
 
     constructor(props) {
@@ -51,6 +53,8 @@ class List extends React.Component {
                 <Task 
                     data={taskData} 
                     onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
+                    onHandleRemoveTask={this.props.onHandleRemoveTask} 
+                    onHandleChangeColor={this.props.onHandleChangeColor}
                     key={taskData.taskId}/>)}
             </div>
         )

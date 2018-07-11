@@ -31,7 +31,7 @@ class App extends Component {
                       "taskId": this.generateId('task'),
                       "text": taskName,
                       "completed": false,
-                      "color": "white",
+                      "color": "gray",
                       "listId": listId
                   }
    this.setState(prevState => {
@@ -70,10 +70,43 @@ class App extends Component {
             })
           }
           return list
-        }) ;
-        
+        }) ; 
         return { lists: newLists }
       })
+  }
+
+  removeTask(taskId, listId){
+    this.setState(prevState => {
+      let newLists = prevState.lists.map(list => {
+        if(list.listId === listId){
+          list.tasks = list.tasks.filter(task => {
+            if(task.taskId === taskId){
+              return false;
+            }
+            return true
+          })
+        }
+        return list;
+      });
+      return {lists: newLists};
+    })
+  }
+
+  changeColor(color,taskId,listId){
+    this.setState(prevState => {
+      let newLists = prevState.lists.map(list => {
+        if(list.listId === listId) {
+          list.tasks = list.tasks.map(task => {
+            if(task.taskId === taskId) {
+              task.color = color.hex;
+            }
+            return task;
+          })
+        }
+        return list
+      }) ; 
+      return { lists: newLists }
+    })
   }
  
   render() {
@@ -87,7 +120,13 @@ class App extends Component {
         <section>
           <div className="lists">
             { this.state.lists.map( listData => 
-            <List key={listData.listId} data={listData} onHandleNewTask={this.addNewTask.bind(this)} onHandleRemoveList={this.removeList.bind(this)} onHandleMarkAsCompleted={this.markAsCompleted.bind(this)}/>)}
+            <List key={listData.listId} data={listData} 
+            onHandleNewTask={this.addNewTask.bind(this)} 
+            onHandleRemoveList={this.removeList.bind(this)} 
+            onHandleMarkAsCompleted={this.markAsCompleted.bind(this)} 
+            onHandleRemoveTask={this.removeTask.bind(this)}
+            onHandleChangeColor={this.changeColor.bind(this)}
+            />)}
           </div>
         </section>
       </div>
