@@ -31,6 +31,7 @@ class App extends Component {
                       "taskId": this.generateId('task'),
                       "text": taskName,
                       "completed": false,
+                      "editable": false,
                       "color": "gray",
                       "listId": listId
                   }
@@ -108,6 +109,60 @@ class App extends Component {
       return { lists: newLists }
     })
   }
+  
+  editableTask(taskId,listId){
+    this.setState(prevState => {
+      let newLists = prevState.lists.map(list => {
+        if(list.listId === listId) {
+          list.tasks = list.tasks.map(task => {
+            if(task.taskId === taskId) {
+              task.editable = true;
+            }
+            return task;
+          })
+        }
+        return list
+      }) ; 
+      return { lists: newLists }
+    })
+  }
+
+  valueEditableTask(e,taskId,listId){
+    if(e.keyCode === 13) {
+      this.setState(prevState => {
+        let newLists = prevState.lists.map(list => {
+          if(list.listId === listId) {
+            list.tasks = list.tasks.map(task => {
+              if(task.taskId === taskId) {
+                task.editable = false;
+              }
+              return task;
+            })
+          }
+          return list
+        }) ; 
+        return { lists: newLists }
+      })
+    }
+  }
+  changeValueTextTask(e,taskId,listId){
+    let text = e.target.value;
+    this.setState(prevState => {
+      let newLists = prevState.lists.map(list => {
+        if(list.listId === listId) {
+          list.tasks = list.tasks.map(task => {
+            if(task.taskId === taskId) {
+              task.text = text;
+            }
+            return task;
+          })
+        }
+        return list
+      }) ; 
+      return { lists: newLists }
+    })
+  }
+  
  
   render() {
     localStorage.setItem('lists', JSON.stringify(this.state.lists));
@@ -126,6 +181,9 @@ class App extends Component {
             onHandleMarkAsCompleted={this.markAsCompleted.bind(this)} 
             onHandleRemoveTask={this.removeTask.bind(this)}
             onHandleChangeColor={this.changeColor.bind(this)}
+            onHandleEditableTask={this.editableTask.bind(this)}
+            onHandleValueEditableTask={this.valueEditableTask.bind(this)}
+            onChangeValueTextTask={this.changeValueTextTask.bind(this)}
             />)}
           </div>
         </section>

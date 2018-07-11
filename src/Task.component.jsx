@@ -10,8 +10,12 @@ class Task extends React.Component {
         data: TaskType,
         onHandleMarkAsCompleted: PropTypes.func.isRequired,
         onHandleRemoveTask: PropTypes.func.isRequired,
-        onHandleChangeColor: PropTypes.func.isRequired
+        onHandleChangeColor: PropTypes.func.isRequired,
+        onHandleEditableTask: PropTypes.func.isRequired,
+        onHandleValueEditableTask: PropTypes.func.isRequired,
+        onChangeValueTextTask: PropTypes.func.isRequired
     }
+
     render () {
         return (
             <div className={`taskItem ${this.props.data.completed ? 'completed': ''}` } id={this.props.data.taskId}>
@@ -29,8 +33,12 @@ class Task extends React.Component {
                             e.target.checked
                         )}
                     checked={this.props.data.completed}/>
-                <div className="taskText">
-                    {this.props.data.text}
+                <div className="taskText" onClick={(e) => this.props.onHandleEditableTask(this.props.data.taskId, this.props.data.listId)}>
+                    {this.props.data.editable ? 
+                    <input type="text" value={this.props.data.text} 
+                    onChange={(e) => this.props.onChangeValueTextTask(e,this.props.data.taskId, this.props.data.listId)}
+                    onKeyUp={(e) => this.props.onHandleValueEditableTask(e,this.props.data.taskId, this.props.data.listId)}/> 
+                    : this.props.data.text}
                   </div>
             </div>
         );

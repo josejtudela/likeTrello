@@ -12,6 +12,9 @@ class List extends React.Component {
         onHandleNewTask: PropTypes.func.isRequired,
         onHandleRemoveList: PropTypes.func.isRequired,
         onHandleChangeColor: PropTypes.func.isRequired,
+        onHandleEditableTask: PropTypes.func.isRequired,
+        onHandleValueEditableTask: PropTypes.func.isRequired,
+        onChangeValueTextTask: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -55,6 +58,9 @@ class List extends React.Component {
                     onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
                     onHandleRemoveTask={this.props.onHandleRemoveTask} 
                     onHandleChangeColor={this.props.onHandleChangeColor}
+                    onHandleEditableTask={this.props.onHandleEditableTask}
+                    onHandleValueEditableTask={this.props.onHandleValueEditableTask}
+                    onChangeValueTextTask={this.props.onChangeValueTextTask}
                     key={taskData.taskId}/>)}
             </div>
         )

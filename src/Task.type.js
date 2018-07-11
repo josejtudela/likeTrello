@@ -4,6 +4,7 @@ const TaskType = PropTypes.shape( {
     text: PropTypes.string.isRequired,
     listId: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
+    editable: PropTypes.bool.isRequired,
     color: PropTypes.string.isRequired
 } )
 export default TaskType;

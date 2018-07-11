@@ -20,7 +20,7 @@ Para ser realizadas por los alumnos:
 
 - [x] Borrar tareas 
 - [x] Cambiar el color de las tareas individualmente (buscar un componente de terceros de color-picker)
-- [ ] Editar texto de la tarea.
+- [x] Editar texto de la tarea.
 - [ ] Cambiar el tareas de lista arrastrándolas (drag and drop native o buscar algún componente de terceros)
 - [ ] Cambiar las tareas de orden (plugin recomendado: [React sortable hoc](https://github.com/clauderic/react-sortable-hoc)
 - [ ] Migrar la gestión del estado a redux
