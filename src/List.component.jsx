@@ -14,7 +14,10 @@ class List extends React.Component {
         onHandleChangeColor: PropTypes.func.isRequired,
         onHandleEditableTask: PropTypes.func.isRequired,
         onHandleValueEditableTask: PropTypes.func.isRequired,
-        onChangeValueTextTask: PropTypes.func.isRequired
+        onChangeValueTextTask: PropTypes.func.isRequired,
+        onHandledragStart: PropTypes.func.isRequired,
+        onHandledragOverTask: PropTypes.func.isRequired,
+        onHandleDropTask: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -38,11 +41,13 @@ class List extends React.Component {
     render() {
         return (
             <div className="list"
+                onDragOver={this.props.onHandledragOverTask}
+                onDrop={this.props.onHandleDropTask}
                 id={this.props.data.listId}>
                 <div className="listHeader">
-                    <h4>{this.props.data.name}
+                    <h3>{this.props.data.name}
                         <button onClick={this.handleRemoveList}>X</button>
-                    </h4>
+                    </h3>
                 </div>
                 <div className="addTask">
                     <input 
@@ -53,7 +58,7 @@ class List extends React.Component {
                     <button onClick={this.handleAddNewTask}>add task</button>
                 </div>
                 {this.props.data.tasks.map(taskData => 
-                <Task 
+                <Task
                     data={taskData} 
                     onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
                     onHandleRemoveTask={this.props.onHandleRemoveTask} 
@@ -61,6 +66,7 @@ class List extends React.Component {
                     onHandleEditableTask={this.props.onHandleEditableTask}
                     onHandleValueEditableTask={this.props.onHandleValueEditableTask}
                     onChangeValueTextTask={this.props.onChangeValueTextTask}
+                    onHandledragStart={this.props.onHandledragStart}
                     key={taskData.taskId}/>)}
             </div>
         )

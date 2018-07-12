@@ -162,6 +162,61 @@ class App extends Component {
       return { lists: newLists }
     })
   }
+
+  dragStartTask(e){
+    this.dragged = e.currentTarget;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData("taskId", e.target.id);
+    e.dataTransfer.setData("listId", e.target.parentNode.id);
+  }
+
+  dragOverTask(e){
+    e.preventDefault();
+  }
+  dropTask(e){
+    e.preventDefault();
+    let taskId = e.dataTransfer.getData("taskId");
+    let listId = e.dataTransfer.getData("listId");
+    let listIdChaged = e.target.id
+    let taskChanging;
+
+    let control = false;
+    this.state.lists.forEach(list => {
+      if(list.listId === listIdChaged){
+        control = true;
+      }
+    });
+
+    if(control){
+      this.setState(prevState => {
+        let prevLists = prevState.lists.map(list => {
+          if(list.listId === listId) {
+            list.tasks = list.tasks.filter(task => {
+              if(task.taskId === taskId) {
+                task.listId = listIdChaged;
+                taskChanging = Object.assign({}, task)
+                return false;
+              }
+              return task;
+            })
+          }
+          return list;
+        }); 
+  
+        console.log("prev: ",prevLists)
+        
+        let newLists = prevLists.map(list => {
+          if(list.listId === listIdChaged) {
+            list.tasks.push(taskChanging);
+          }
+          return list;
+        }) ; 
+        console.log("new: ",newLists)
+  
+        return { lists: newLists }
+      })
+    }
+  }
   
  
   render() {
@@ -184,6 +239,9 @@ class App extends Component {
             onHandleEditableTask={this.editableTask.bind(this)}
             onHandleValueEditableTask={this.valueEditableTask.bind(this)}
             onChangeValueTextTask={this.changeValueTextTask.bind(this)}
+            onHandledragStart={this.dragStartTask.bind(this)}
+            onHandledragOverTask={this.dragOverTask.bind(this)}
+            onHandleDropTask={this.dropTask.bind(this)}
             />)}
           </div>
         </section>

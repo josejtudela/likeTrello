@@ -13,13 +13,18 @@ class Task extends React.Component {
         onHandleChangeColor: PropTypes.func.isRequired,
         onHandleEditableTask: PropTypes.func.isRequired,
         onHandleValueEditableTask: PropTypes.func.isRequired,
-        onChangeValueTextTask: PropTypes.func.isRequired
+        onChangeValueTextTask: PropTypes.func.isRequired,
+        onHandledragStart: PropTypes.func.isRequired
+    }
+
+    dragStart = (e) => {
+        console.log(e.target)
     }
 
     render () {
         return (
-            <div className={`taskItem ${this.props.data.completed ? 'completed': ''}` } id={this.props.data.taskId}>
-                <button onClick={(e) => this.props.onHandleRemoveTask(
+            <div draggable="true" onDragStart={this.props.onHandledragStart} className={`taskItem ${this.props.data.completed ? 'completed': ''}` } id={this.props.data.taskId}>
+                <button className="taskCross" onClick={(e) => this.props.onHandleRemoveTask(
                             this.props.data.taskId, 
                             this.props.data.listId)
                             }>X</button>  
