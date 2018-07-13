@@ -20,8 +20,11 @@
 }
 
 .taskCross {
-    background-color: red;
     border-color: black;
+}
+
+.taskCross:hover {
+    background-color: red;
 }
 
 .taskText {
