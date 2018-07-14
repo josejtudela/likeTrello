@@ -8,8 +8,7 @@ class App extends Component {
   constructor( props ) {
       super( props );
       this.state = {
-          'addNewListText': '',
-          // "lists": JSON.parse(localStorage.getItem('lists')) || [],
+          'addNewListText': ''
       }
   }
 
@@ -37,7 +36,6 @@ class App extends Component {
           <div className="lists">
             { this.props.lists.map( listData => 
             <List key={listData.listId} data={listData} 
-            // onHandleNewTask={this.addNewTask.bind(this)} 
             // onHandleRemoveList={this.removeList.bind(this)} 
             // onHandleMarkAsCompleted={this.markAsCompleted.bind(this)} 
             // onHandleRemoveTask={this.removeTask.bind(this)}
@@ -63,50 +61,6 @@ const AppConnected = connect( mapStateToProps, mapDispatchToProps)(App);
 
 export default AppConnected;
 
-
-  // generateId(namespace) {
-  //   return `${namespace}-${Date.now()}-${Math.round(Math.random()*100)}`
-
-  // }
-  // addNewList = () => {
-  //   const newList = {
-  //                 "listId": this.generateId('list'),
-  //                 "name": this.state.addNewListText,
-  //                 "tasks": []
-  //             }
-  //   this.setState(prevState => {
-  //     prevState.lists.push(newList);
-  //     return ({lists: prevState.lists, addNewListText: ''});
-  //   });
-
-  // }
-  // addNewTask(taskName, listId) {
-  //   const newTask = {
-  //                     "taskId": this.generateId('task'),
-  //                     "text": taskName,
-  //                     "completed": false,
-  //                     "editable": false,
-  //                     "color": "gray",
-  //                     "listId": listId
-  //                 }
-  //  this.setState(prevState => {
-  //    const newLists = prevState.lists.map( list => {
-  //      if (list.listId === listId) {
-  //        list.tasks.push(newTask)
-  //      }
-  //      return list;
-  //    })
-  //    return { lists: newLists}
-  //  })
-  // }
-  // handleInputChange = (e) => {
-  //   this.setState({addNewListText: e.target.value})
-  // }
-  // handleKeyup = (e) => {
-  //   if(e.keyCode === 13) {
-  //     this.addNewList();
-  //   }
-  // }
   // removeList(listId) {
   //     this.setState(prevState => {
   //       let newLists = prevState.lists.filter( list => list.listId !== listId) ;

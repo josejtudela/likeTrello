@@ -3,6 +3,8 @@ import './List.component.css';
 import Task from './Task.component.jsx';
 import ListType from './List.type.js';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addNewTask } from './store/actionCreators';
 
 class List extends React.Component {
     static propTypes = {
@@ -32,7 +34,7 @@ class List extends React.Component {
     handleAddNewTask = (e) => {
         if(e.keyCode === 13 || e.type === 'click') {
             this.props.onHandleNewTask(this.state.newTaskName, this.props.data.listId)
-             this.setState({newTaskName: ''})
+            this.setState({newTaskName: ''})
         }
     }
     handleRemoveList = () => {
@@ -72,4 +74,10 @@ class List extends React.Component {
         )
     }
 }
-export default List;
+
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({onHandleNewTask: (name, listId) => dispatch(addNewTask(name, listId))})
+
+const ListConnected = connect( mapStateToProps, mapDispatchToProps)(List)
+
+export default ListConnected;

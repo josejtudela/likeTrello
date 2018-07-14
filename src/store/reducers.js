@@ -13,7 +13,15 @@ function reducer(state = initialState, action) {
                 ]
             }
         case 'ADD_TASK':
-            return { ...state
+            let newLists = state.lists.map(list => {
+                if(action.newTask.listId === list.listId){
+                    list.tasks.push(action.newTask);
+                }
+                return list;
+            })
+            return { 
+                ...state,
+                lists: newLists
             }
         case 'REMOVE_LIST':
             return { ...state
