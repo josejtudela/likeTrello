@@ -4,7 +4,7 @@ import Task from './Task.component.jsx';
 import ListType from './List.type.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNewTask } from './store/actionCreators';
+import { addNewTask, removeList } from './store/actionCreators';
 
 class List extends React.Component {
     static propTypes = {
@@ -37,9 +37,9 @@ class List extends React.Component {
             this.setState({newTaskName: ''})
         }
     }
-    handleRemoveList = () => {
-        this.props.onHandleRemoveList(this.props.data.listId)
-    }
+    // handleRemoveList = () => {
+    //     this.props.onHandleRemoveList(this.props.data.listId)
+    // }
     render() {
         return (
             <div className="list"
@@ -48,7 +48,7 @@ class List extends React.Component {
                 id={this.props.data.listId}>
                 <div className="listHeader">
                     <h3>{this.props.data.name}
-                        <button onClick={this.handleRemoveList}>X</button>
+                        <button onClick={() => this.props.onHandleRemoveList(this.props.data.listId)}>X</button>
                     </h3>
                 </div>
                 <div className="addTask">
@@ -76,7 +76,12 @@ class List extends React.Component {
 }
 
 const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({onHandleNewTask: (name, listId) => dispatch(addNewTask(name, listId))})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onHandleNewTask: (name, listId) => dispatch(addNewTask(name, listId)),
+        onHandleRemoveList: (listId) => dispatch(removeList(listId))
+    }
+}
 
 const ListConnected = connect( mapStateToProps, mapDispatchToProps)(List)
 

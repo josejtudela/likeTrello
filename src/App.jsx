@@ -36,7 +36,6 @@ class App extends Component {
           <div className="lists">
             { this.props.lists.map( listData => 
             <List key={listData.listId} data={listData} 
-            // onHandleRemoveList={this.removeList.bind(this)} 
             // onHandleMarkAsCompleted={this.markAsCompleted.bind(this)} 
             // onHandleRemoveTask={this.removeTask.bind(this)}
             // onHandleChangeColor={this.changeColor.bind(this)}
@@ -55,18 +54,16 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({lists: state.lists});
-const mapDispatchToProps = (dispatch) => ({addNewList: (name) => dispatch(addNewList(name))})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewList: (name) => dispatch(addNewList(name))
+  }
+}
 
 const AppConnected = connect( mapStateToProps, mapDispatchToProps)(App);
 
 export default AppConnected;
 
-  // removeList(listId) {
-  //     this.setState(prevState => {
-  //       let newLists = prevState.lists.filter( list => list.listId !== listId) ;
-  //       return { lists: newLists }
-  //     })
-  // }
   // markAsCompleted(taskId,listId, completedState) {
   //   this.setState(prevState => {
   //       let newLists = prevState.lists.map(list => {

@@ -24,7 +24,10 @@ function reducer(state = initialState, action) {
                 lists: newLists
             }
         case 'REMOVE_LIST':
-            return { ...state
+            const removeList = state.lists.filter(list => action.listId !== list.listId);
+            return {
+                ...state,
+                lists: removeList
             }
         case 'REMOVE_TASK':
             return { ...state
