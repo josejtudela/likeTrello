@@ -8,13 +8,13 @@ import './Task.component.css';
 class Task extends React.Component {
     static propTypes = {
         data: TaskType,
-        onHandleMarkAsCompleted: PropTypes.func.isRequired,
-        onHandleRemoveTask: PropTypes.func.isRequired,
-        onHandleChangeColor: PropTypes.func.isRequired,
-        onHandleEditableTask: PropTypes.func.isRequired,
-        onHandleValueEditableTask: PropTypes.func.isRequired,
-        onChangeValueTextTask: PropTypes.func.isRequired,
-        onHandledragStart: PropTypes.func.isRequired
+        // onHandleMarkAsCompleted: PropTypes.func.isRequired,
+        // onHandleRemoveTask: PropTypes.func.isRequired,
+        // onHandleChangeColor: PropTypes.func.isRequired,
+        // onHandleEditableTask: PropTypes.func.isRequired,
+        // onHandleValueEditableTask: PropTypes.func.isRequired,
+        // onChangeValueTextTask: PropTypes.func.isRequired,
+        // onHandledragStart: PropTypes.func.isRequired
     }
 
     dragStart = (e) => {

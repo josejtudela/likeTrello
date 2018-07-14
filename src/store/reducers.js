@@ -1,17 +1,26 @@
 const initialState = {
-    lists: []
+    lists: JSON.parse(localStorage.getItem('lists')) || []
 }
 
-function reducer( state = initialState, action){
+function reducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_LIST':
-            return {...state}
+            return {
+                ...state,
+                lists: [
+                    ...state.lists,
+                    action.newList
+                ]
+            }
         case 'ADD_TASK':
-            return {...state}
+            return { ...state
+            }
         case 'REMOVE_LIST':
-            return {...state}
+            return { ...state
+            }
         case 'REMOVE_TASK':
-            return {...state}
+            return { ...state
+            }
         default:
             break;
     }
@@ -19,4 +28,3 @@ function reducer( state = initialState, action){
 }
 
 export default reducer;
-

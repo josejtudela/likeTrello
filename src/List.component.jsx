@@ -7,17 +7,17 @@ import PropTypes from 'prop-types';
 class List extends React.Component {
     static propTypes = {
         data: ListType,
-        onHandleMarkAsCompleted: PropTypes.func.isRequired,
-        onHandleRemoveTask: PropTypes.func.isRequired,
-        onHandleNewTask: PropTypes.func.isRequired,
-        onHandleRemoveList: PropTypes.func.isRequired,
-        onHandleChangeColor: PropTypes.func.isRequired,
-        onHandleEditableTask: PropTypes.func.isRequired,
-        onHandleValueEditableTask: PropTypes.func.isRequired,
-        onChangeValueTextTask: PropTypes.func.isRequired,
-        onHandledragStart: PropTypes.func.isRequired,
-        onHandledragOverTask: PropTypes.func.isRequired,
-        onHandleDropTask: PropTypes.func.isRequired
+        // onHandleMarkAsCompleted: PropTypes.func.isRequired,
+        // onHandleRemoveTask: PropTypes.func.isRequired,
+        // onHandleNewTask: PropTypes.func.isRequired,
+        // onHandleRemoveList: PropTypes.func.isRequired,
+        // onHandleChangeColor: PropTypes.func.isRequired,
+        // onHandleEditableTask: PropTypes.func.isRequired,
+        // onHandleValueEditableTask: PropTypes.func.isRequired,
+        // onChangeValueTextTask: PropTypes.func.isRequired,
+        // onHandledragStart: PropTypes.func.isRequired,
+        // onHandledragOverTask: PropTypes.func.isRequired,
+        // onHandleDropTask: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -41,8 +41,8 @@ class List extends React.Component {
     render() {
         return (
             <div className="list"
-                onDragOver={this.props.onHandledragOverTask}
-                onDrop={this.props.onHandleDropTask}
+                // onDragOver={this.props.onHandledragOverTask}
+                // onDrop={this.props.onHandleDropTask}
                 id={this.props.data.listId}>
                 <div className="listHeader">
                     <h3>{this.props.data.name}
@@ -60,13 +60,13 @@ class List extends React.Component {
                 {this.props.data.tasks.map(taskData => 
                 <Task
                     data={taskData} 
-                    onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
-                    onHandleRemoveTask={this.props.onHandleRemoveTask} 
-                    onHandleChangeColor={this.props.onHandleChangeColor}
-                    onHandleEditableTask={this.props.onHandleEditableTask}
-                    onHandleValueEditableTask={this.props.onHandleValueEditableTask}
-                    onChangeValueTextTask={this.props.onChangeValueTextTask}
-                    onHandledragStart={this.props.onHandledragStart}
+                    // onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
+                    // onHandleRemoveTask={this.props.onHandleRemoveTask} 
+                    // onHandleChangeColor={this.props.onHandleChangeColor}
+                    // onHandleEditableTask={this.props.onHandleEditableTask}
+                    // onHandleValueEditableTask={this.props.onHandleValueEditableTask}
+                    // onChangeValueTextTask={this.props.onChangeValueTextTask}
+                    // onHandledragStart={this.props.onHandledragStart}
                     key={taskData.taskId}/>)}
             </div>
         )
