@@ -2,7 +2,6 @@ import React from 'react';
 import './List.component.css';
 import Task from './Task.component.jsx';
 import ListType from './List.type.js';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNewTask, removeList } from './store/actionCreators';
 

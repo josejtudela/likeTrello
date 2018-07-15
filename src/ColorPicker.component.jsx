@@ -1,12 +1,11 @@
 import { GithubPicker } from 'react-color';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import TaskType from './Task.type.js';
 
 export default class ColorPicker extends Component {
     static propTypes = {
         data: TaskType,
-        onHandleChangeColor: PropTypes.func.isRequired
+        // onHandleChangeColor: PropTypes.func.isRequired
     }
 
     constructor(props){
