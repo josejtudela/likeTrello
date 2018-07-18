@@ -8,14 +8,6 @@ import { addNewTask, removeList } from './store/actionCreators';
 class List extends React.Component {
     static propTypes = {
         data: ListType,
-        // onHandleMarkAsCompleted: PropTypes.func.isRequired,
-        // onHandleRemoveTask: PropTypes.func.isRequired,
-        // onHandleNewTask: PropTypes.func.isRequired,
-        // onHandleRemoveList: PropTypes.func.isRequired,
-        // onHandleChangeColor: PropTypes.func.isRequired,
-        // onHandleEditableTask: PropTypes.func.isRequired,
-        // onHandleValueEditableTask: PropTypes.func.isRequired,
-        // onChangeValueTextTask: PropTypes.func.isRequired,
         // onHandledragStart: PropTypes.func.isRequired,
         // onHandledragOverTask: PropTypes.func.isRequired,
         // onHandleDropTask: PropTypes.func.isRequired
@@ -36,9 +28,6 @@ class List extends React.Component {
             this.setState({newTaskName: ''})
         }
     }
-    // handleRemoveList = () => {
-    //     this.props.onHandleRemoveList(this.props.data.listId)
-    // }
     render() {
         return (
             <div className="list"
@@ -61,12 +50,6 @@ class List extends React.Component {
                 {this.props.data.tasks.map(taskData => 
                 <Task
                     data={taskData} 
-                    // onHandleMarkAsCompleted={this.props.onHandleMarkAsCompleted} 
-                    // onHandleRemoveTask={this.props.onHandleRemoveTask} 
-                    // onHandleChangeColor={this.props.onHandleChangeColor}
-                    // onHandleEditableTask={this.props.onHandleEditableTask}
-                    // onHandleValueEditableTask={this.props.onHandleValueEditableTask}
-                    // onChangeValueTextTask={this.props.onChangeValueTextTask}
                     // onHandledragStart={this.props.onHandledragStart}
                     key={taskData.taskId}/>)}
             </div>

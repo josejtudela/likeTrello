@@ -36,12 +36,6 @@ class App extends Component {
           <div className="lists">
             { this.props.lists.map( listData => 
             <List key={listData.listId} data={listData} 
-            // onHandleMarkAsCompleted={this.markAsCompleted.bind(this)} 
-            // onHandleRemoveTask={this.removeTask.bind(this)}
-            // onHandleChangeColor={this.changeColor.bind(this)}
-            // onHandleEditableTask={this.editableTask.bind(this)}
-            // onHandleValueEditableTask={this.valueEditableTask.bind(this)}
-            // onChangeValueTextTask={this.changeValueTextTask.bind(this)}
             // onHandledragStart={this.dragStartTask.bind(this)}
             // onHandledragOverTask={this.dragOverTask.bind(this)}
             // onHandleDropTask={this.dropTask.bind(this)}
@@ -63,110 +57,6 @@ const mapDispatchToProps = (dispatch) => {
 const AppConnected = connect( mapStateToProps, mapDispatchToProps)(App);
 
 export default AppConnected;
-
-  // markAsCompleted(taskId,listId, completedState) {
-  //   this.setState(prevState => {
-  //       let newLists = prevState.lists.map(list => {
-  //         if(list.listId === listId) {
-  //           list.tasks = list.tasks.map(task => {
-  //             if(task.taskId === taskId) {
-  //               task.completed = completedState;
-  //             }
-  //             return task;
-  //           })
-  //         }
-  //         return list
-  //       }) ; 
-  //       return { lists: newLists }
-  //     })
-  // }
-
-  // removeTask(taskId, listId){
-  //   this.setState(prevState => {
-  //     let newLists = prevState.lists.map(list => {
-  //       if(list.listId === listId){
-  //         list.tasks = list.tasks.filter(task => {
-  //           if(task.taskId === taskId){
-  //             return false;
-  //           }
-  //           return true
-  //         })
-  //       }
-  //       return list;
-  //     });
-  //     return {lists: newLists};
-  //   })
-  // }
-
-  // changeColor(color,taskId,listId){
-  //   this.setState(prevState => {
-  //     let newLists = prevState.lists.map(list => {
-  //       if(list.listId === listId) {
-  //         list.tasks = list.tasks.map(task => {
-  //           if(task.taskId === taskId) {
-  //             task.color = color.hex;
-  //           }
-  //           return task;
-  //         })
-  //       }
-  //       return list
-  //     }) ; 
-  //     return { lists: newLists }
-  //   })
-  // }
-  
-  // editableTask(taskId,listId){
-  //   this.setState(prevState => {
-  //     let newLists = prevState.lists.map(list => {
-  //       if(list.listId === listId) {
-  //         list.tasks = list.tasks.map(task => {
-  //           if(task.taskId === taskId) {
-  //             task.editable = true;
-  //           }
-  //           return task;
-  //         })
-  //       }
-  //       return list
-  //     }) ; 
-  //     return { lists: newLists }
-  //   })
-  // }
-
-  // valueEditableTask(e,taskId,listId){
-  //   if(e.keyCode === 13) {
-  //     this.setState(prevState => {
-  //       let newLists = prevState.lists.map(list => {
-  //         if(list.listId === listId) {
-  //           list.tasks = list.tasks.map(task => {
-  //             if(task.taskId === taskId) {
-  //               task.editable = false;
-  //             }
-  //             return task;
-  //           })
-  //         }
-  //         return list
-  //       }) ; 
-  //       return { lists: newLists }
-  //     })
-  //   }
-  // }
-  // changeValueTextTask(e,taskId,listId){
-  //   let text = e.target.value;
-  //   this.setState(prevState => {
-  //     let newLists = prevState.lists.map(list => {
-  //       if(list.listId === listId) {
-  //         list.tasks = list.tasks.map(task => {
-  //           if(task.taskId === taskId) {
-  //             task.text = text;
-  //           }
-  //           return task;
-  //         })
-  //       }
-  //       return list
-  //     }) ; 
-  //     return { lists: newLists }
-  //   })
-  // }
 
   // dragStartTask(e){
   //   this.dragged = e.currentTarget;

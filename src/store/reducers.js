@@ -24,7 +24,7 @@ function reducer(state = initialState, action) {
                 lists: newLists
             }
         case 'REMOVE_LIST':
-        const removeList = state.lists.filter(list => action.listId !== list.listId);
+            const removeList = state.lists.filter(list => action.listId !== list.listId);
             return {
                 ...state,
                 lists: removeList
@@ -32,7 +32,6 @@ function reducer(state = initialState, action) {
         case 'REMOVE_TASK':
             const listsWithRemoveTask = state.lists.map(list => {
                 if(action.listId === list.listId){
-                    // list.tasks = list.tasks.filter(task => action.taskId !== task.taskId);
                     let newListTasks = list.tasks.filter(task => action.taskId !== task.taskId);
                     return Object.assign({},list,{
                         tasks: newListTasks
@@ -43,6 +42,67 @@ function reducer(state = initialState, action) {
             return { 
                 ...state,
                 lists: listsWithRemoveTask
+            }
+        case 'COMPLETE_TASK':
+            const listsWithCompletedTask = state.lists.map(list => {
+                if(action.listId === list.listId){
+                    let newListCompletedTasks = list.tasks.map(task => {
+                        if(action.taskId === task.taskId) {
+                            task.completed = action.completed;
+                        }
+                        return {
+                            ...task,
+                        }
+                    });
+                    return Object.assign({},list,{
+                        tasks: newListCompletedTasks
+                    })
+                }
+                return list;
+            })
+            return { 
+                ...state,
+                lists: listsWithCompletedTask
+            }
+        case 'CHANGE_TASK_COLOR':
+            const listsWithColorTask = state.lists.map(list => {
+                if(action.listId === list.listId){
+                    let newListColorTasks = list.tasks.map(task => {
+                        if(action.taskId === task.taskId) {
+                            task.color = action.color;
+                        }
+                        return {
+                            ...task,
+                        }
+                    });
+                    return Object.assign({},list,{
+                        tasks: newListColorTasks
+                    })
+                }
+                return list;
+            })
+            return { 
+                ...state,
+                lists: listsWithColorTask
+            }
+        case 'EDIT_TASK':
+            const listEditTask = state.lists.map(list => {
+                if (action.listId === list.listId) {
+                    const editTaks = list.tasks.map(task => {
+                        if (action.taskId === task.taskId) {
+                            task.text = action.text;
+                        }
+                        return task;
+                    })
+                    return Object.assign({},list,{
+                        tasks: editTaks
+                    })
+                }
+                return list;
+            })
+            return {
+                ...state,
+                lists: listEditTask
             }
         default:
             break;

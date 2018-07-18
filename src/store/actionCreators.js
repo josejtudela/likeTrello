@@ -40,3 +40,30 @@ export function removeTask(taskId, listId) {
         listId
     }
 }
+
+export function completedTask(taskId, listId, completed) {
+    return {
+        type: 'COMPLETE_TASK',
+        taskId,
+        listId,
+        completed
+    }
+}
+
+export function changeTaskColor(color, taskId, listId){
+    return {
+        type: 'CHANGE_TASK_COLOR',
+        color,
+        taskId,
+        listId
+    }
+}
+
+export function editTask(text, taskId, listId){
+    return {
+        type: 'EDIT_TASK',
+        text,
+        taskId,
+        listId
+    }
+}
