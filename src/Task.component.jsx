@@ -68,13 +68,13 @@ class Task extends React.Component {
 Task.propTypes = propTypes;
 
 const mapStateToProps = (state,ownProps) => {
-    const {taskId, listId} = ownProps;
+    const {taskId, listId, onHandledragStart} = ownProps;
 
-    const task = state.lists.filter(list => listId === list.listId)[0].tasks.filter(task => taskId === task.taskId);
-
+    const propTask = state.lists.filter(list => listId === list.listId)[0].tasks.filter(task => taskId === task.taskId);
+    
     return {
-        data: task[0],
-        onHandledragStart: ownProps.onHandledragStart
+        data: propTask[0],
+        onHandledragStart
     }
 };
 const mapDispatchToProps = (dispatch) => {
