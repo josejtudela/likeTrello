@@ -61,7 +61,7 @@ class List extends React.Component {
                         onChange={(e) => this.handleInputChange(e)} 
                         onKeyUp={(e) => this.handleAddNewTask(e)} 
                     />
-                    <button onClick={this.handleAddNewTask}>add task</button>
+                    <button onClick={(e) => this.handleAddNewTask(e)}>add task</button>
                 </div>
                 {this.props.data.tasks.map(taskData => 
                 <Task
