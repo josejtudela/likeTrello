@@ -12,14 +12,14 @@ class App extends Component {
       }
   }
 
-  addNewList = () => {
+  addNewList(){
     this.props.addNewList(this.state.addNewListText);
     this.setState({ addNewListText: '' })
   }
-  handleInputChange = (e) => {
+  handleInputChange(e){
     this.setState({addNewListText: e.target.value})
   }
-  handleKeyup = (e) => {
+  handleKeyup(e){
     if(e.keyCode === 13) {
       this.addNewList();
     }
@@ -29,16 +29,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="addList">
-          <input type="text" value={this.state.addNewListText} onChange={this.handleInputChange} onKeyUp={this.handleKeyup}/>
-          <button onClick={this.addNewList}>add new list</button>
+          <input 
+            type="text" 
+            value={this.state.addNewListText} 
+            onChange={(e) => this.handleInputChange(e)} 
+            onKeyUp={(e) => this.handleKeyup(e)}
+          />
+          <button onClick={() => this.addNewList()}>add new list</button>
         </header>
         <section>
           <div className="lists">
             { this.props.lists.map( listData => 
-            <List key={listData.listId} data={listData} 
-            // onHandledragStart={this.dragStartTask.bind(this)}
-            // onHandledragOverTask={this.dragOverTask.bind(this)}
-            // onHandleDropTask={this.dropTask.bind(this)}
+            <List 
+              key={listData.listId} 
+              data={listData} 
             />)}
           </div>
         </section>
@@ -57,58 +61,3 @@ const mapDispatchToProps = (dispatch) => {
 const AppConnected = connect( mapStateToProps, mapDispatchToProps)(App);
 
 export default AppConnected;
-
-  // dragStartTask(e){
-  //   this.dragged = e.currentTarget;
-  //   e.dataTransfer.effectAllowed = 'move';
-  //   e.dataTransfer.setData("taskId", e.target.id);
-  //   e.dataTransfer.setData("listId", e.target.parentNode.id);
-  // }
-
-  // dragOverTask(e){
-  //   e.preventDefault();
-  // }
-  // dropTask(e){
-  //   e.preventDefault();
-  //   let taskId = e.dataTransfer.getData("taskId");
-  //   let listId = e.dataTransfer.getData("listId");
-  //   let listIdChaged = e.target.id
-  //   let taskChanging;
-
-  //   let control = false;
-  //   this.state.lists.forEach(list => {
-  //     if(list.listId === listIdChaged){
-  //       control = true;
-  //     }
-  //   });
-
-  //   if(control){
-  //     this.setState(prevState => {
-  //       let prevLists = prevState.lists.map(list => {
-  //         if(list.listId === listId) {
-  //           list.tasks = list.tasks.filter(task => {
-  //             if(task.taskId === taskId) {
-  //               task.listId = listIdChaged;
-  //               taskChanging = Object.assign({}, task)
-  //               return false;
-  //             }
-  //             return task;
-  //           })
-  //         }
-  //         return list;
-  //       }); 
-  
-  //       console.log("prev: ",prevLists)
-        
-  //       let newLists = prevLists.map(list => {
-  //         if(list.listId === listIdChaged) {
-  //           list.tasks.push(taskChanging);
-  //         }
-  //         return list;
-  //       }) ; 
-  //       console.log("new: ",newLists)
-  
-  //       return { lists: newLists }
-  //     })
-  //   }
-  // }

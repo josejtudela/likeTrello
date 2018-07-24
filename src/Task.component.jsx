@@ -1,9 +1,15 @@
 import React from 'react';
 import ColorPicker from './ColorPicker.component';
 import TaskType from './Task.type.js';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeTask, completedTask, editTask } from './store/actionCreators';
 import './Task.component.css';
+
+const propTypes = {
+    data: TaskType,
+    onHandledragStart: PropTypes.func.isRequired
+}
 
 class Task extends React.Component {
     constructor(props){
@@ -12,10 +18,6 @@ class Task extends React.Component {
             editable: false,
             tempTextTask: ''
         }
-    }
-    static propTypes = {
-        data: TaskType,
-        // onHandledragStart: PropTypes.func.isRequired
     }
 
     onHandleEditableTask = () => {
@@ -60,6 +62,8 @@ class Task extends React.Component {
         );
     }
 }
+
+Task.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => {

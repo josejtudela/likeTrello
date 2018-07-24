@@ -104,6 +104,50 @@ function reducer(state = initialState, action) {
                 ...state,
                 lists: listEditTask
             }
+        case 'DRAG_AND_DROP_TASK':
+            const { taskId, listId, endListId } = action;
+                let control = false;
+                state.lists.forEach(list => {
+                    if(list.listId === endListId){
+                        control = true;
+                    }
+                });
+                if(control){
+                    let movedtask;
+                    const prevLists = state.lists.map(list => {
+                        if(list.listId === listId) {
+                            let listTaskMove = list.tasks.filter(task => {
+                                if(task.taskId === taskId) {
+                                    task.listId = endListId;
+                                    movedtask = Object.assign({}, task)
+                                    return false;
+                                }
+                                return task
+                            })
+                            return Object.assign({},list,{
+                                tasks: listTaskMove
+                            })
+                        }
+                        return list;
+                    }); 
+        
+                    var newListsMoveTask = prevLists.map(list => {
+                        if(list.listId === endListId) {
+                            //list.tasks.push(movedtask);
+                            let listEnd = [...list.tasks]
+                            listEnd.push(movedtask);
+                            return Object.assign({},list,{
+                                tasks: listEnd
+                            })
+                        }
+                        return list;
+                    }) ; 
+                    return {
+                        ...state,
+                        lists: newListsMoveTask
+                    }
+                }
+                return state;
         default:
             break;
     }

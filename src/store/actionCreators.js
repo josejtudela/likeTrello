@@ -67,3 +67,12 @@ export function editTask(text, taskId, listId){
         listId
     }
 }
+
+export function dndTask(taskId, listId, endListId){
+    return {
+        type: 'DRAG_AND_DROP_TASK',
+        taskId,
+        listId,
+        endListId
+    }
+}
