@@ -42,7 +42,7 @@ class App extends Component {
             { this.props.lists.map( listData => 
             <List 
               key={listData.listId} 
-              data={listData} 
+              listId={listData.listId}
             />)}
           </div>
         </section>

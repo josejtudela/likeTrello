@@ -65,7 +65,8 @@ class List extends React.Component {
                 </div>
                 {this.props.data.tasks.map(taskData => 
                 <Task
-                    data={taskData} 
+                    taskId={taskData.taskId} 
+                    listId={taskData.listId}
                     onHandledragStart={this.dragStartTask}
                     key={taskData.taskId}
                 />)}
@@ -76,7 +77,14 @@ class List extends React.Component {
 
 List.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state, ownProps) => {
+    const listId = ownProps.listId
+    const list = state.lists.filter(list => list.listId === listId);
+
+    return {
+        data: list[0]
+    }
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         onHandleNewTask: (name, listId) => dispatch(addNewTask(name, listId)),

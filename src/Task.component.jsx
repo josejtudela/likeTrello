@@ -20,13 +20,13 @@ class Task extends React.Component {
         }
     }
 
-    onHandleEditableTask = () => {
+    onHandleEditableTask() {
         this.setState({editable: true, tempTextTask: this.props.data.text});
     }
-    onChangeValueTextTask = (e) => {
+    onChangeValueTextTask(e) {
         this.setState({tempTextTask: e.target.value});
     }
-    onHandleValueEditableTask = (e) => {
+    onHandleValueEditableTask(e) {
         if(e.keyCode === 13){
             this.setState({editable: false});
             this.props.onHandleEditTask(this.state.tempTextTask, this.props.data.taskId, this.props.data.listId)
@@ -36,7 +36,7 @@ class Task extends React.Component {
     render () {
         return (
             <div draggable="true" onDragStart={this.props.onHandledragStart} className={`taskItem ${this.props.data.completed ? 'completed': ''}` } id={this.props.data.taskId}>
-                <button className="taskCross" onClick={(e) => this.props.onHandleRemoveTask(
+                <button className="taskCross" onClick={() => this.props.onHandleRemoveTask(
                             this.props.data.taskId, 
                             this.props.data.listId)
                             }>X</button>  
@@ -52,7 +52,9 @@ class Task extends React.Component {
                     checked={this.props.data.completed}/>
                 <div className="taskText" onClick={() => this.onHandleEditableTask()}>
                     {this.state.editable ? 
-                    <input type="text" value={this.state.tempTextTask} 
+                    <input 
+                        type="text" 
+                        value={this.state.tempTextTask} 
                         onChange={(e) => this.onChangeValueTextTask(e)}
                         onKeyUp={(e) => this.onHandleValueEditableTask(e)}
                     /> 
@@ -65,7 +67,16 @@ class Task extends React.Component {
 
 Task.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state,ownProps) => {
+    const {taskId, listId} = ownProps;
+
+    const task = state.lists.filter(list => listId === list.listId)[0].tasks.filter(task => taskId === task.taskId);
+
+    return {
+        data: task[0],
+        onHandledragStart: ownProps.onHandledragStart
+    }
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         onHandleRemoveTask: (taskId, listId) => dispatch(removeTask(taskId, listId)),

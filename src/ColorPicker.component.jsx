@@ -4,26 +4,27 @@ import TaskType from './Task.type.js';
 import { connect } from 'react-redux';
 import { changeTaskColor } from './store/actionCreators';
 
+const propTypes = {
+    data: TaskType,
+}
+
 class ColorPicker extends Component {
-    static propTypes = {
-        data: TaskType,
-    }
     constructor(props){
         super(props);
         this.state = {
             displayColorPicker: false
         }
     }
-    onHandleDisplay = () => {
+    onHandleDisplay() {
         this.setState(preState => ({displayColorPicker: !preState.displayColorPicker}));
     }
-    handleClose = () => {
+    handleClose() {
         this.setState(preState => {
             if(true ===  preState.displayColorPicker){
                 return {displayColorPicker: false}
             }
         });
-    };
+    }
     render() {
         const popover = {
             position: 'absolute',
@@ -41,17 +42,25 @@ class ColorPicker extends Component {
           }
         return (
         <div>
-                <button onClick={ this.onHandleDisplay } style={background}>Color</button>
+                <button onClick={() => this.onHandleDisplay()} style={background}>Color</button>
                 {
-                    this.state.displayColorPicker ? 
-                    <div style={ popover }> <div style={ cover } onClick={ this.handleClose }/> <GithubPicker onChange={(color) => this.props.onHandleChangeColor(color.hex,this.props.data.taskId, 
-                        this.props.data.listId) }/> </div>
-                    : null
+                    this.state.displayColorPicker && 
+                    (<div style={ popover }> 
+                    <div 
+                        style={ cover } 
+                        onClick={ () => this.handleClose() }
+                    /> 
+                        <GithubPicker 
+                            onChange={(color) => this.props.onHandleChangeColor(color.hex,this.props.data.taskId,this.props.data.listId)}
+                        /> 
+                    </div>)
                 }    
         </div>
         )
     }
 }
+
+ColorPicker.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => {
