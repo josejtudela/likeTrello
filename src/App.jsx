@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import List from './List.component.jsx';
 import { connect } from 'react-redux';
 import { addNewList } from './store/actionCreators';
