@@ -4,7 +4,7 @@ import TaskType from './Task.type.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeTask, completedTask, editTask } from './store/actionCreators';
-import './Task.component.css';
+import './Task.component.scss';
 
 const propTypes = {
     data: TaskType,
@@ -35,7 +35,7 @@ class Task extends React.Component {
 
     render () {
         return (
-            <div draggable="true" onDragStart={this.props.onHandledragStart} className={`taskItem ${this.props.data.completed ? 'completed': ''}` } id={this.props.data.taskId}>
+            <div draggable="true" onDragStart={this.props.onHandledragStart} className={`taskItem ${this.props.data.completed && 'completed'}` } id={this.props.data.taskId}>
                 <button className="taskCross" onClick={() => this.props.onHandleRemoveTask(
                             this.props.data.taskId, 
                             this.props.data.listId)
@@ -51,13 +51,13 @@ class Task extends React.Component {
                         )}
                     checked={this.props.data.completed}/>
                 <div className="taskText" onClick={() => this.onHandleEditableTask()}>
-                    {this.state.editable ? 
-                    <input 
+                    {this.state.editable  
+                    ? <input 
                         type="text" 
                         value={this.state.tempTextTask} 
                         onChange={(e) => this.onChangeValueTextTask(e)}
                         onKeyUp={(e) => this.onHandleValueEditableTask(e)}
-                    /> 
+                      /> 
                     : this.props.data.text}
                   </div>
             </div>

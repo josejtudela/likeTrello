@@ -1,5 +1,5 @@
 import React from 'react';
-import './List.component.css';
+import './List.component.scss';
 import Task from './Task.component.jsx';
 import ListType from './List.type.js';
 import { connect } from 'react-redux';

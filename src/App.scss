@@ -3,22 +3,23 @@
     flex-direction: column;
     background-color: grey;
     min-height: 100vh;
-}
 
-header {
-    background: tomato;
-    display: flex;
-    justify-content: flex-end;
-    padding: 30px;
-}
-
-.lists {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 1px solid grey;
-    padding: 30px;
+    header {
+        background: #0079BF;
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px;
+    
+    }
+    
+    .lists {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        border: 1px solid grey;
+        padding: 30px;
+    }
 }
 
 input {
@@ -26,4 +27,5 @@ input {
     border-radius: 2px;
     border-color: #000000;
 }
+
 
