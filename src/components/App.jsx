@@ -35,7 +35,7 @@ class App extends Component {
             onChange={(e) => this.handleInputChange(e)} 
             onKeyUp={(e) => this.handleKeyup(e)}
           />
-          <button onClick={() => this.addNewList()}>add new list</button>
+          <button onClick={() => this.addNewList()}>add list</button>
         </header>
         <section>
           <div className="lists">

@@ -46,7 +46,8 @@ class Task extends Component {
                         onChange={(e) => this.onChangeValueTextTask(e)}
                         onKeyUp={(e) => this.onHandleValueEditableTask(e)}
                       /> 
-                    : this.props.data.text}
+                    : this.props.data.text
+                    }
                 </div>
                 <input 
                   type="checkbox" 
