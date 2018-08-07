@@ -38,11 +38,17 @@ class ColorPicker extends Component {
             left: '0px',
           }
           const background = {
-              backgroundColor: this.props.data.color
+              backgroundColor: this.props.data.color,
+              padding: '0.6em',
+
           }
         return (
-        <div>
-                <button onClick={() => this.onHandleDisplay()} style={background}>Color</button>
+        <div className="colorPickerStyle">
+                <button 
+                  onClick={() => this.onHandleDisplay()} 
+                  style={background}
+                > 
+                </button>
                 {
                     this.state.displayColorPicker && 
                     (<div style={ popover }> 
