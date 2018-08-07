@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ColorPicker from './ColorPicker.component';
-import TaskType from './Task.type.js';
+import TaskType from './Task.type';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeTask, completedTask, editTask } from './store/actionCreators';
-import './Task.component.scss';
+import { removeTask, completedTask, editTask } from '../actions/actionCreators';
+import '../styles/Task.component.scss';
 
 const propTypes = {
     data: TaskType,
     onHandledragStart: PropTypes.func.isRequired
 }
 
-class Task extends React.Component {
+class Task extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -36,21 +36,9 @@ class Task extends React.Component {
     render () {
         return (
             <div draggable="true" onDragStart={this.props.onHandledragStart} className={`taskItem ${this.props.data.completed && 'completed'}` } id={this.props.data.taskId}>
-                <button className="taskCross" onClick={() => this.props.onHandleRemoveTask(
-                            this.props.data.taskId, 
-                            this.props.data.listId)
-                            }>X</button>  
-                <ColorPicker data={this.props.data} /> 
-                <input 
-                    type="checkbox" 
-                    onChange={(e)=> 
-                        this.props.onHandleMarkAsCompleted(
-                            this.props.data.taskId, 
-                            this.props.data.listId,
-                            e.target.checked
-                        )}
-                    checked={this.props.data.completed}/>
-                <div className="taskText" onClick={() => this.onHandleEditableTask()}>
+                <div 
+                  className="taskText" 
+                  onClick={() => this.onHandleEditableTask()}>
                     {this.state.editable  
                     ? <input 
                         type="text" 
@@ -59,7 +47,28 @@ class Task extends React.Component {
                         onKeyUp={(e) => this.onHandleValueEditableTask(e)}
                       /> 
                     : this.props.data.text}
-                  </div>
+                </div>
+                <input 
+                  type="checkbox" 
+                  onChange={(e)=> 
+                      this.props.onHandleMarkAsCompleted(
+                          this.props.data.taskId, 
+                          this.props.data.listId,
+                          e.target.checked
+                      )}
+                  checked={this.props.data.completed}
+                />
+
+                <ColorPicker data={this.props.data} /> 
+                <button 
+                  className="taskCross" 
+                  onClick={() => this.props.onHandleRemoveTask(
+                    this.props.data.taskId, 
+                    this.props.data.listId)}
+                >
+                  X
+                </button>  
+
             </div>
         );
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.scss';
-import List from './List.component.jsx';
+import '../styles/App.scss';
+import List from './List.component';
 import { connect } from 'react-redux';
-import { addNewList } from './store/actionCreators';
+import { addNewList } from '../actions/actionCreators';
 
 class App extends Component {
   constructor( props ) {

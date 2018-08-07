@@ -1,0 +1,30 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 121, 191, 0.685);
+    min-height: 100vh;
+
+    header {
+        background: #0079BF;
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px;
+    
+    }
+    
+    .lists {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px;
+    }
+}
+
+input {
+    padding: 0.4em;
+    border-radius: 2px;
+    border-color: #000000;
+}
+
+
